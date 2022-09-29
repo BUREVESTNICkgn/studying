@@ -24,7 +24,7 @@ class Angle:
         return self.degree + self.minute / 60
     def radian(self):
         rad1 = self.degree * math.pi / 180 
-        rad2 = self.minute * math.pi / 180 * 60
+        rad2 = self.minute * math.pi / 10800
         return rad1 + rad2
         # def dd(self):
         #     degrees = math.trunc(decimal_degrees)
