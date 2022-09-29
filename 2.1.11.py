@@ -18,7 +18,7 @@ class equation:
     def root(self):
         if flag: 
             if self.second != 0:
-                return self.second/self.first 
+                return -self.second/self.first 
             else:
                 return print('Коэф равен нулю')
         else:
