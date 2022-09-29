@@ -18,9 +18,20 @@ class Angle:
         if str(degree).isnumeric() == False or str(minute).isnumeric() == False:
             flag = False
         else:
-            self.degree = degree
-            self.minute = minute
+            self.degree = int(degree)
+            self.minute = int(minute)
+    def decimal_degrees(self):
+        return self.degree + self.minute / 60
+        # def dd(self):
+        #     degrees = math.trunc(decimal_degrees)
+        #     minutes = math.trunc((decimal_degrees - degrees) * 60)
+        #     return degrees, minutes
+a = input('A: ')
+b = input('B: ')
+s = Angle(a, b)
+print(s.decimal_degrees())
 
-    def radian(self):
-        if flag:
-            
+"""
+https://en.wikipedia.org/wiki/Decimal_degrees
+
+"""
