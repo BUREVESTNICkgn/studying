@@ -22,6 +22,10 @@ class Angle:
             self.minute = int(minute)
     def decimal_degrees(self):
         return self.degree + self.minute / 60
+    def radian(self):
+        rad1 = self.degree * math.pi / 180 
+        rad2 = self.minute * math.pi / 180 * 60
+        return rad1 + rad2
         # def dd(self):
         #     degrees = math.trunc(decimal_degrees)
         #     minutes = math.trunc((decimal_degrees - degrees) * 60)
@@ -29,7 +33,7 @@ class Angle:
 a = input('A: ')
 b = input('B: ')
 s = Angle(a, b)
-print(s.decimal_degrees())
+print(s.radian())
 
 """
 https://en.wikipedia.org/wiki/Decimal_degrees
