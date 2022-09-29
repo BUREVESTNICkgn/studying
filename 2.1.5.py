@@ -1,14 +1,15 @@
-# 1.5 Поле first – дробное положительное число, цена товара; 
-# поле second – целое положительное число, количество единиц товара.
-# Реализовать метод cost() – вычисление стоимости товара.
+"""
+1.5 Поле first – дробное положительное число, цена товара; 
+поле second – целое положительное число, количество единиц товара.
+Реализовать метод cost() – вычисление стоимости товара.
 
+"""
 
 class table:
     def __init__(self, first, second):
         global flag 
         flag = True
-        if str(first).isnumeric() == False:
-            print('Не корректный ввод')
+        if str(first).isnumeric() == False or str(second).isnumeric() == False:
             flag = False
         else:
             self.first = float(first)
@@ -18,7 +19,7 @@ class table:
         if flag: 
             return self.first * self.second
         else:
-            pass
+           return print('Не корректный ввод')    
 
 first = input('Введите цену: ')
 second = input('Введите кол-во: ')
