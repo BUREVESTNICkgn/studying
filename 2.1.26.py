@@ -18,8 +18,10 @@ class Operations_On_Degrees:
         pass
     def transfer(self):
         if self.minute >= 60:
-            self.minute = self.minute / 60
-        pass
+            order_minute = self.minute // 60
+            self.minute = self.minute - (order_minute * 60)
+            self.degree += (order_minute)
+        return self.degree, self.minute
 
 
 class Angle:
@@ -47,6 +49,8 @@ class Angle:
 a = input('A: ')
 b = input('B: ')
 s = Angle(a, b)
+gg = Operations_On_Degrees(a, b)
+print(gg.transfer())
 print(s.radian())
 print(s.decimal_degrees())
 print(s.re_dd())
