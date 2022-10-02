@@ -10,21 +10,38 @@
 """
 
 import math
+import P
 
-class Operations_On_Degrees:
+class OperOnDegrees:
     def __init__(self, degree, minute):
         self.degree = int(degree)
         self.minute = int(minute)
+        pass
+    def __add__(self, other):
+        new1 = OperOnDegrees(self.degree, self.minute)
+        new2 = OperOnDegrees(self.degree, self.minute)
+        new1.degree += other.degree
+        new1.minute += other.minute
+        return new1, new2 
+    def __sub__(self, other):
         pass
     def transfer(self):
         if self.minute >= 60:
             order_minute = self.minute // 60
             self.minute = self.minute - (order_minute * 60)
-            self.degree += (order_minute)
+            self.degree += order_minute
         return self.degree, self.minute
+    def dif(self):
+        pass
 
 
 class Angle:
+    """
+    Данный класс позволяет рабоать с градусами и минутами (DM), радианами
+    десятичными градусами (DD), а так же вычеслять синус
+
+    """
+    
     def __init__(self, degree, minute):
         global flag 
         flag = True
@@ -44,19 +61,24 @@ class Angle:
         minutes = math.trunc((self.decimal_degrees() - degrees) * 60)
         return degrees, minutes
     def sin(self):
+        'sin(rad)'
         return math.sin(self.radian())
 
 a = input('A: ')
 b = input('B: ')
+c = input('С: ')
+d = input('D: ')
 s = Angle(a, b)
-gg = Operations_On_Degrees(a, b)
+gg = OperOnDegrees(a, b)
 print(gg.transfer())
 print(s.radian())
 print(s.decimal_degrees())
 print(s.re_dd())
 # print(s.re2_dd())
 print(s.sin())
-
+f = OperOnDegrees(a, b)
+h = OperOnDegrees(c, d)
+print(f.transfer() + h.transfer())
 """
 https://en.wikipedia.org/wiki/Decimal_degrees
 
