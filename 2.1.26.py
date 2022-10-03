@@ -12,7 +12,7 @@
 import math
 import PyQt5
 
-"""
+
 
 class OperOnDegrees:
     def __init__(self, degree, minute):
@@ -21,10 +21,10 @@ class OperOnDegrees:
         pass
 
     def __add__(self, other):
-        # new1 = OperOnDegrees(self.degree, self.minute)
-        # new2 = OperOnDegrees(self.degree, self.minute)
-        # new1.degree += other.degree
-        # new1.minute += other.minute
+        new1 = OperOnDegrees(self.degree, self.minute)
+        new2 = OperOnDegrees(self.degree, self.minute)
+        new1.degree += other.degree
+        new1.minute += other.minute
         # return new1, new2
         d = other.getMin
         return OperOnDegrees(self.degree + d)
@@ -45,7 +45,6 @@ class OperOnDegrees:
     def dif(self):
         pass
 
-""" 
 
 class Angle:
     """
@@ -57,13 +56,15 @@ class Angle:
     def __init__(self, degree, minute):
         global flag
         flag = True
-        if str(degree).isnumeric() == False or str(minute).isnumeric() == False:  # noqa: E712
-            flag = False
-        else:
-            self.degree = int(degree)
-            self.minute = int(minute)
-            # self.degree_op = int(degree_op)
-            # self.minute_op = int(minute_op)
+        self.degree = int(degree)
+        self.minute = int(minute)
+        # if str(degree).isnumeric() == False or str(minute).isnumeric() == False:  # noqa: E712
+        #     flag = False
+        # else:
+        #     self.degree = int(degree)
+        #     self.minute = int(minute)
+        #     # self.degree_op = int(degree_op)
+        #     # self.minute_op = int(minute_op)
 
     def decimal_degrees(self):
         return math.degrees(self.radian())
@@ -75,18 +76,22 @@ class Angle:
 
     def re_dd(self):
         degrees = math.trunc(self.decimal_degrees())
-        minutes = math.trunc((self.decimal_degrees() - degrees) * 60)
+        minutes = math.trunc(abs((self.decimal_degrees() - degrees)) * 60)
         return degrees, minutes
 
     def transfer(self):
-        if self.minute >= 60:
-            order_minute = self.minute // 60
-            self.minute = self.minute - (order_minute * 60)
+        ter = self.minute
+        if abs(ter) >= 60:
+            order_minute = ter // 60
+            self.minute = ter - (order_minute * 60)
             self.degree += order_minute
         return self.degree, self.minute
     
     def sin(self):
-        """sin(rad)"""
+        """
+        sin(<rad>)
+        
+        """
         return math.sin(self.radian())
     
     def plus(self, degree_op, minute_op):
@@ -94,6 +99,12 @@ class Angle:
     
     def minus(self, degree_op, minute_op):
         return self.degree - int(degree_op), self.minute - int(minute_op)
+    
+    # def comparison(self, degree_op, minute_op):
+    #     if self.radian():
+    #     pass
+        
+        
         
 
 
@@ -104,16 +115,18 @@ b = input('B: ')
 s = Angle(a, b)
 # gg = OperOnDegrees(a, b)
 # print(gg.transfer())
-print(s.transfer())
-print(s.radian())
-print(s.decimal_degrees())
-print(s.re_dd())
+print(f'Перевод к стандартному виду: {s.transfer()}')
+print(f'Перевод в радинаы: {s.radian()}')
+print(f'Перевод в десятичные градусы: {s.decimal_degrees()}')
+print(f'Перевод из DD в DM: {s.re_dd()}')
 # print(s.re2_dd())
-print(s.sin())
+print(f"Синус угла {a}°{b}': {s.sin()}")
 # f = OperOnDegrees(a, b)
 # h = OperOnDegrees(c, d)
 # print(f + h)
 print(s.plus(5, 7))
+print(s.minus(5, 7))
+
 
 """
 https://en.wikipedia.org/wiki/Decimal_degrees

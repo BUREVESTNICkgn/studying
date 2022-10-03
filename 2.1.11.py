@@ -9,11 +9,18 @@ class equation:
     def __init__(self, first, second):
         global flag 
         flag = True
-        if str(first).isnumeric() == False or str(second).isnumeric() == False:
+        if self.isfloat(first) == False or self.isfloat(second) == False:
             flag = False
         else:
             self.first = float(first)
             self.second = float(second)
+            
+    def isfloat(self, value):
+        try:
+            float(value)
+            return True
+        except ValueError:
+            return False
             
     def root(self):
         if flag: 
