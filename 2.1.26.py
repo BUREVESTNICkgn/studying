@@ -66,10 +66,16 @@ class Angle:
         #     # self.minute_op = int(minute_op)
         
     def __add__(self, other):
-        new1 = Angle(self.degree, self.minute)
-        new1.degree += other.degree
-        new1.minute += other.minute
-        return new1
+        new = Angle(self.degree, self.minute)
+        new.degree += other.degree
+        new.minute += other.minute
+        return self.transfer(new.degree, new.minute)
+    
+    def __sub__(self, other):
+        new = Angle(self.degree, self.minute)
+        new.degree -= other.degree
+        new.minute -= other.minute
+        return self.transfer(new.degree, new.minute)
 
     def decimal_degrees(self):
         return math.degrees(self.radian())
@@ -98,14 +104,15 @@ class Angle:
         """
         return math.sin(self.radian())
     
-    def plus(self, degree_op, minute_op):
-        a = self.degree + int(degree_op)
-        b = self.minute + int(minute_op)
-        # return self.degree + int(degree_op), self.minute + int(minute_op)
+    def plus(self, degree_op: int, minute_op: int):
+        a = self.degree + degree_op
+        b = self.minute + minute_op
         return self.transfer(a, b)
     
-    def minus(self, degree_op, minute_op):
-        return self.degree - int(degree_op), self.minute - int(minute_op)
+    def minus(self, degree_op: int, minute_op: int):
+        a = self.degree - degree_op
+        b = self.minute - minute_op
+        return self.transfer(a, b)
     
     def get(self):
         return self.degree, self.minute
@@ -134,7 +141,7 @@ print(f"Синус угла {a}°{b}': {s.sin()}")
 f = Angle(45, 6)
 h = Angle(90, 9)
 y = f + h
-print(y.get())
+print(y)
 print(s.plus(5, 7))
 print(s.minus(5, 7))
 

@@ -15,6 +15,7 @@ class equation:
             self.first = float(first)
             self.second = float(second)
             
+            
     def isfloat(self, value):
         try:
             float(value)
