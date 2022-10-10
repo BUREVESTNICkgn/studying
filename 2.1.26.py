@@ -120,6 +120,13 @@ class Angle:
     # def comparison(self, degree_op, minute_op):
     #     if self.radian():
     #     pass
+    
+
+class Triangle(Angle):
+    def __init__(self, degree, minute, length):
+        super().__init__(degree, minute)
+        self.length = length
+    
         
         
         
@@ -127,19 +134,14 @@ class Angle:
 
 a = input('A: ')
 b = input('B: ')
-# c = input('С: ')
-# d = input('D: ')
 s = Angle(a, b)
-# gg = OperOnDegrees(a, b)
-# print(gg.transfer())
 print(f'Перевод к стандартному виду: {s.transfer()}')
 print(f'Перевод в радинаы: {s.radian()}')
 print(f'Перевод в десятичные градусы: {s.decimal_degrees()}')
 print(f'Перевод из DD в DM: {s.re_dd()}')
-# print(s.re2_dd())
 print(f"Синус угла {a}°{b}': {s.sin()}")
-f = Angle(45, 6)
-h = Angle(90, 9)
+f = Angle(45, 45)
+h = Angle(90, -560)
 y = f + h
 print(y)
 print(s.plus(5, 7))
